@@ -5,6 +5,7 @@ import TypeRoomRepository, { TypeRoomRepositoryName } from '../repositories/type
 const router = Router();
 
 router.post('/typeRooms', (req, res) => {
+    res.send('Hello World');
     // return di.get<TypeRoomRepository>(TypeRoomRepositoryName).createTypeRoom(req.body.name, req.body.valuePerDay)
     
 });
