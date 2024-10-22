@@ -50,6 +50,7 @@ model RentalAdjustment {
   id          Int      @id @default(autoincrement())
   typeRoom     TypeRoom @relation(fields: [typeRoomId], references: [id])
   typeRoomId  Int
+  minDays     Int
   discount    Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
