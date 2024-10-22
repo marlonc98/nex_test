@@ -12,3 +12,47 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// region Models
+
+model TypeRoom {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  pricePerDay Float
+  rooms       Room[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  RentalAdjustment RentalAdjustment[]
+}
+
+model Room {
+  id               Int                @id @default(autoincrement())
+  typeRoom         TypeRoom           @relation(fields: [typeRoomId], references: [id])
+  typeRoomId       Int
+  Booking          Booking[]
+}
+
+model Booking {
+  id            Int      @id @default(autoincrement())
+  clientName    String
+  clientEmail   String
+  clientPhone   String
+  initialDate   DateTime
+  finalDate     DateTime
+  totalPayment  Float
+  withBreakfast Boolean
+  room          Room     @relation(fields: [roomId], references: [id])
+  roomId        Int
+}
+
+model RentalAdjustment {
+  id          Int      @id @default(autoincrement())
+  typeRoom     TypeRoom @relation(fields: [typeRoomId], references: [id])
+  typeRoomId  Int
+  discount    Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// endregion models
