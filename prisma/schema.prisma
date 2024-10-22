@@ -18,9 +18,9 @@ datasource db {
 model TypeRoom {
   id          Int      @id @default(autoincrement())
   name        String
-  description String
   pricePerDay Float
   rooms       Room[]
+  maxGuests   Int @default(1)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   RentalAdjustments RentalAdjustment[]
@@ -28,20 +28,19 @@ model TypeRoom {
 
 model Room {
   id               Int                @id @default(autoincrement())
-  typeRoom         TypeRoom           @relation(fields: [typeRoomId], references: [id])
+  TypeRoom         TypeRoom           @relation(fields: [typeRoomId], references: [id])
   typeRoomId       Int
-  Booking          Booking[]
+  name             String
+  Bookings          Booking[]
 }
 
 model Booking {
   id            Int      @id @default(autoincrement())
-  clientName    String
-  clientEmail   String
-  clientPhone   String
   initialDate   DateTime
   finalDate     DateTime
   totalPayment  Float
   withBreakfast Boolean
+  numberOfGuest Int
   canceled     Boolean @default(false)
   room          Room     @relation(fields: [roomId], references: [id])
   roomId        Int
