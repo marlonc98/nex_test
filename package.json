@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "type": "module",
+  "prisma": {
+    "seed": "node prisma/seed"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc index && node index"
