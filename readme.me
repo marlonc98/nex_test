@@ -1,0 +1,41 @@
+# Project Setup Guide
+
+## How to Install Dependencies
+
+Run the following command to install the necessary dependencies:
+
+npm i
+
+## Start Server
+
+To initialize the database and run migrations, execute:
+
+npx prisma migrate dev --name init
+
+## Seeding the Database
+
+You can add types of rooms, rooms, and discounts for each type of room manually. However, for the purpose of this app, we will use seeding:
+
+npx prisma db seed
+
+## Adding Data via API
+
+You can add other data using the API:
+
+- Add Type of Room: POST /api/typeRoom
+- Add Discount per Days: POST /api/RentalAdjustment
+- Add Room: POST /api/room
+
+## Running the Server
+
+Now you can run the server with the following command:
+
+npx tsx index.ts
+
+## Testing with Postman
+
+You can use the provided Postman file to test all routes. The file is located at:
+
+./CRUD_POSTMAN.json
+
+Just install Postman and import the file to get started.
